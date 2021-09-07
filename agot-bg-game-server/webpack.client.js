@@ -7,7 +7,6 @@ module.exports = (env, argv) => {
         output: {
             path: __dirname + "/dist/",
             filename: "bundle.[contenthash].js",
-            publicPath: "/static/"
         },
         entry: "./src/client/client.tsx",
         target: "web",

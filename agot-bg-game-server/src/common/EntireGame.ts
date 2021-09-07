@@ -337,14 +337,17 @@ export default class EntireGame extends GameState<null, LobbyGameState | IngameG
     }
 
     getViewOfGame(): any {
-        // Creating a view of the current turn of the game
-        const turn = this.childGameState instanceof IngameGameState
-            ? this.childGameState.game.turn
-            : -1;
-        const maxPlayerCount = this.gameSettings.playerCount;
-        const settings = this.gameSettings;
+        // Create a view of game integrated with AirMeeple
+        const popover = this.childGameState instanceof IngameGameState ? `<p>Turn: <b>${this.childGameState.game.turn}</b></p>` : "";
+        
+        const badges = this.gameSettings.pbem
+            ? `<span class="badge badge-info">PBEM</span>`
+            : `<span class="badge badge-info">LIVE</span>`;
 
-        return {turn, maxPlayerCount, settings};
+        return {
+            popover,
+            badges,
+        };
     }
 
     // eslint-disable-next-line @typescript-eslint/ban-types
